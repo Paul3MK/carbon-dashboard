@@ -1,0 +1,22 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+
+.inventory__banner{
+    padding-top: $spacing-07;
+    padding-bottom: $spacing-04;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page__heading{
+    @include type-style("productive-heading-05")
+}
+
+.inventory__modal__column{
+    padding-top: $spacing-05;
+    padding-bottom: $spacing-05;
+    margin-left: 0;
+    margin-right: 0;
+}

@@ -1,0 +1,41 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/colors';
+
+@use './mixins.scss' as *;
+@use './overrides.scss';
+
+.landing-page__heading{
+  @include type-style("productive-heading-05")
+}
+
+.landing-page__subheading{
+  @include type-style("productive-heading-02")
+}
+
+.landing-page__display-text{
+  @include type-style("productive-heading-07")
+}
+
+.landing-page__banner{
+  padding-top: $spacing-07;
+  padding-bottom: $spacing-06;
+}
+
+
+.landing-page__caption{
+  padding-top: $spacing-03;
+  border-top: 1px colors.$gray-60 solid;
+  @include type-style("body-compact-01")
+}
+
+.spacing-06{
+  margin-top: $spacing-06;
+}
+
+.landing-page__charts-r1{
+  padding-top: $spacing-07;
+  padding-bottom: $spacing-05;
+}

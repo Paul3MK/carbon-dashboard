@@ -1,0 +1,35 @@
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme' with (
+  $theme: themes.$g100
+);
+@use "@carbon/react";
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/colors';
+
+@use '@/components/DashboardHeader/dashboard-header';
+
+@use '@/app/home/landing-page';
+@use '@/app/inventory/inventory';
+@use '@/app/requests/requests';
+
+
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+
+@media (min-width: 42rem){
+  body{
+    background-color: colors.$gray-100;
+  }
+  
+  .cds--grid--no-gutter{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .cds--content{
+    margin-top: 3rem;
+    padding: 0;
+  }
+}
+

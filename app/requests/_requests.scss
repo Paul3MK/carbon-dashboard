@@ -1,0 +1,13 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+
+.requests__banner{
+    padding-top: $spacing-06;
+    padding-bottom: $spacing-04;   
+}
+
+.requests__heading{
+    @include type-style("productive-heading-05")
+}
