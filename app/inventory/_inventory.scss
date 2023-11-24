@@ -3,9 +3,12 @@
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/theme' as *;
 
+@use "./control/inventory-control";
+@use "./management/inventory-management";
+
 .inventory__banner{
     padding-top: $spacing-07;
-    padding-bottom: $spacing-04;
+    padding-bottom: $spacing-09;
     display: flex;
     justify-content: space-between;
 }
@@ -19,4 +22,30 @@
     padding-bottom: $spacing-05;
     margin-left: 0;
     margin-right: 0;
+}
+
+.inventory__display-text{
+    @include type-style("productive-heading-07")
+}
+
+.inventory__subheading{
+    @include type-style("productive-heading-02")
+}
+
+.inventory__caption-text{
+    @include type-style("label-02")
+}
+
+.inventory__copy{
+    @include type-style("body-02")
+}
+
+.inventory__section__callout{
+        padding-top: $spacing-06;
+        padding-bottom: $spacing-06;
+    }
+
+.inventory__section__header{
+    display: flex;
+    justify-content: space-between;
 }
