@@ -1,14 +1,14 @@
 "use client"
 
-import { Grid, Column, Tile, ClickableTile, Link } from "@carbon/react"
+import { Grid, Column, Tile, ClickableTile, Link, AspectRatio } from "@carbon/react"
 import { SimpleBarChart, LineChart, GaugeChart, MeterChart } from "@carbon/charts-react"
 import { ReactNode, useEffect, useState } from "react"
 import '@carbon/charts-react/styles.css'
 import { ArrowRight, ArrowUpRight } from "@carbon/react/icons"
 
-export default function LandingPage(){
+export default function LandingPage() {
 
-  const [ barChartData, setBarChartData ] = useState<any>([
+  const [barChartData, setBarChartData] = useState<any>([
     {
       group: "Bitters",
       units: 3420
@@ -26,7 +26,7 @@ export default function LandingPage(){
       units: 542
     }
   ]);
-  const [ barChartOptions, setBarChartOptions ] = useState<any>({
+  const [barChartOptions, setBarChartOptions] = useState<any>({
     title: "Scrap requests per category",
     axes: {
       bottom: {
@@ -41,7 +41,7 @@ export default function LandingPage(){
     theme: "g100"
   });
 
-  const [ lineChartData, setLineChartData ] = useState<any>([
+  const [lineChartData, setLineChartData] = useState<any>([
     {
       group: "Monthly sales",
       date: new Date("1 January 2022"),
@@ -73,7 +73,7 @@ export default function LandingPage(){
       value: 3861385
     }
   ])
-  const [ lineChartOptions, setLineChartOptions ] = useState<any>({
+  const [lineChartOptions, setLineChartOptions] = useState<any>({
     title: "Sales volume for 22H1",
     axes: {
       bottom: {
@@ -92,7 +92,7 @@ export default function LandingPage(){
     theme: "g100"
   })
 
-  const [ gaugeChartData, setGaugeChartData ] = useState<any>([
+  const [gaugeChartData, setGaugeChartData] = useState<any>([
     {
       group: "value",
       value: 19
@@ -103,7 +103,7 @@ export default function LandingPage(){
     }
   ])
 
-  const [ gaugeChartOptions, setGaugeChartOptions ] = useState<any>({
+  const [gaugeChartOptions, setGaugeChartOptions] = useState<any>({
     title: "Inventory tolerance",
     resizable: true,
     height: "250px",
@@ -115,7 +115,7 @@ export default function LandingPage(){
     theme: "g100"
   })
 
-  const [ meterChartData, setMeterChartData ] = useState<any>([
+  const [meterChartData, setMeterChartData] = useState<any>([
     {
       group: "Bitters",
       value: 18260
@@ -133,15 +133,15 @@ export default function LandingPage(){
       value: 8960
     }
   ])
-  const [ meterChartOptions, setMeterChartOptions ] = useState<any>({
+  const [meterChartOptions, setMeterChartOptions] = useState<any>({
     title: "Current inventory composition",
     height: "120px",
     meter: {
       proportional: {
-        total: meterChartData?.reduce((acc, val)=> acc + val.value, 0),
+        total: meterChartData?.reduce((acc, val) => acc + val.value, 0),
         unit: "bottles",
-        totalFormatter:  _=>`${_} bottles`,
-        breakdownFormatter: ()=>``
+        totalFormatter: _ => `${_} bottles`,
+        breakdownFormatter: () => ``
       }
     },
     color: {
@@ -152,17 +152,17 @@ export default function LandingPage(){
     theme: "g100"
   })
 
-  return(
+  return (
     <Grid className="landing-page">
       <Column lg={16} md={8} sm={4} className="landing-page__banner">
         <h1 className="landing-page__heading">Overview</h1>
       </Column>
-      <Column lg={16} className="landing-page__summaries">
+      <Column lg={16} md={8} sm={4} className="landing-page__summaries">
         <Grid>
-          <SummaryCard label="Distributors" content="32" caption="in total"/>
-          <SummaryCard clickable href="/inventory" label="Products out of stock" content="4" caption="as of 20.11.23"/>
-          <SummaryCard label="Distribution orders" content="8" caption="in the last 24h"/>
-          <SummaryCard clickable href="/requests" label="Transfer requests" content="2" caption="pending"/>
+          <SummaryCard label="Distributors" content="32" caption="in total" />
+          <SummaryCard clickable href="/inventory" label="Products out of stock" content="4" caption="as of 20.11.23" />
+          <SummaryCard label="Distribution orders" content="8" caption="in the last 24h" />
+          <SummaryCard clickable href="/requests" label="Transfer requests" content="2" caption="pending" />
         </Grid>
       </Column>
       <Column lg={16} md={8} sm={4} className="landing-page__charts-r1">
@@ -179,7 +179,7 @@ export default function LandingPage(){
           <Column lg={8} md={4} sm={4}>
             <ClickableTile renderIcon={ArrowUpRight} href="/inventory">
               {/* <GaugeChart options={gaugeChartOptions} data={gaugeChartData}/> */}
-              <MeterChart options={meterChartOptions} data={meterChartData}/>
+              <MeterChart options={meterChartOptions} data={meterChartData} />
             </ClickableTile>
           </Column>
         </Grid>
@@ -189,28 +189,36 @@ export default function LandingPage(){
 }
 
 
-const SummaryCard = ({label, content, caption, clickable, href}: {label: string, content: string, caption?:string, clickable?: boolean, href?:string}) => {
-  if(clickable){
+const SummaryCard = ({ label, content, caption, clickable, href, ratio="2x1" }: { label: string, content: string, caption?: string, clickable?: boolean, href?: string, ratio?: any }) => {
+  if (clickable) {
     return (
       <Column lg={4} md={2} sm={4}>
         <ClickableTile href={href} className="landing-page__card" renderIcon={ArrowRight}>
-          <h2 className="landing-page__subheading">{label}</h2>
-          <div className="spacing-06"></div>
-          <p className="landing-page__display-text">{content}</p>
-          <p className="landing-page__caption">{caption}</p>
+          <AspectRatio ratio={ratio}>
+            <h2 className="landing-page__subheading">{label}</h2>
+            <div className="card__content">
+              <p className="landing-page__display-text">{content}</p>
+              <p className="landing-page__caption">{caption}</p>
+            </div>
+          </AspectRatio>
         </ClickableTile>
       </Column>
     )
-  }else{
+  } else {
     return (
       <Column lg={4} md={2} sm={4}>
         <Tile className="landing-page__card">
-          <h2 className="landing-page__subheading">{label}</h2>
-          <div className="spacing-06"></div>
-          <p className="landing-page__display-text">{content}</p>
-          <p className="landing-page__caption">{caption}</p>
+          <AspectRatio ratio={ratio}>
+            <h2 className="landing-page__subheading">{label}</h2>
+            <div className="card__content">
+              <p className="landing-page__display-text">{content}</p>
+              <p className="landing-page__caption">{caption}</p>
+            </div>
+          </AspectRatio>
         </Tile>
       </Column>
     )
   }
 }
+
+export { SummaryCard }
