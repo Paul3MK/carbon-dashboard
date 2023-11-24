@@ -1,0 +1,17 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+
+.inventory-control__heading{
+    @include type-style("productive-heading-04")
+}
+
+.inventory-control__subheading{
+    @include type-style("productive-heading-03")
+}
+
+.inventory-control__banner{
+    padding-top: $spacing-07;
+    padding-bottom: $spacing-06;
+}
