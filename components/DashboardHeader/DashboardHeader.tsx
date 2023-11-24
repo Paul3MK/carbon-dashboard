@@ -13,8 +13,11 @@ import {
   SideNav,
   SideNavItems,
   HeaderSideNavItems,
+  SideNavLink,
+  SideNavMenu,
+  SideNavMenuItem,
 } from '@carbon/react';
-import { Switcher, Notification, UserAvatar } from "@carbon/icons-react"
+import { Switcher, Notification, UserAvatar, BottlesContainer, List, Report, BuildTool, UserAccess } from "@carbon/icons-react"
 import Link from 'next/link';
 
 export default function DashboardHeader() {
@@ -42,7 +45,9 @@ export default function DashboardHeader() {
           <SideNav
             aria-label="Side navigation"
             expanded={isSideNavExpanded}
-            isPersistent={false}
+            onOverlayClick={onClickSideNavExpand}
+            onSideNavBlur={onClickSideNavExpand}
+            isRail
           >
             <SideNavItems>
               <HeaderSideNavItems>
@@ -53,6 +58,31 @@ export default function DashboardHeader() {
                   <HeaderMenuItem>Requests</HeaderMenuItem>
                 </Link>
               </HeaderSideNavItems>
+              <SideNavMenu renderIcon={UserAccess} title="Users">
+                <SideNavMenuItem href="/">
+                  User management
+                </SideNavMenuItem>
+                <SideNavMenuItem href="/">
+                  User link 2
+                </SideNavMenuItem>
+              </SideNavMenu>
+              <SideNavMenu renderIcon={BottlesContainer} title="Inventory">
+                <SideNavMenuItem href="/inventory">
+                  Inventory control
+                </SideNavMenuItem>
+                <SideNavMenuItem href="/inventory">
+                  Inventory management
+                </SideNavMenuItem>
+              </SideNavMenu>
+              <SideNavLink renderIcon={Report} href="/reports">
+                Reports
+              </SideNavLink>
+              <SideNavLink renderIcon={List} href="/">
+                Transactions
+              </SideNavLink>
+              <SideNavLink renderIcon={BuildTool} href="/">
+                Setup
+              </SideNavLink>
             </SideNavItems>
           </SideNav>
           <HeaderGlobalBar>
