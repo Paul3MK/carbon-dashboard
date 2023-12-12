@@ -3,21 +3,19 @@
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/theme' as *;
 
-.inventory-control__heading{
+.setup__heading{
     @include type-style("productive-heading-04")
 }
 
-.inventory-control__subheading{
+.setup__subheading{
     @include type-style("productive-heading-03")
 }
 
-.inventory-control__banner{
+.setup__banner{
     padding-top: $spacing-07;
     padding-bottom: $spacing-06;
 }
 
-.inventory-control__copy{
-    @include type-style("helper-text-02");
-    padding-top: $spacing-07;
-    max-width: 14rem;
+.setup__tile{
+    height: 100%;
 }

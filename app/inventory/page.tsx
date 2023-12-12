@@ -8,8 +8,11 @@ import { LineChart } from "@carbon/charts-react";
 
 import '@carbon/charts-react/styles.css'
 
-import InventoryTable from "./InventoryTable";
-import EditProductModal from "@/components/EditProductModal/EditProductModal";
+import CustomTable from "@/components/CustomTable/CustomTable";
+import EditProductModal from "@/components/Modals/EditProductModal";
+import { useMainStore } from "@/state/mainStore";
+import useStore from "@/state/useStore";
+import CommonModal from "@/components/Modals/CommonModal";
 
 export default function Inventory() {
 
@@ -123,16 +126,17 @@ export default function Inventory() {
       }
     },
     height: "400px",
-    theme: "g100"
+    theme: "g10"
   });
 
-  const { register, handleSubmit, formState: { errors } } = useForm<ProductInputs>()
-  const onSubmit: SubmitHandler<ProductInputs> = (_data) => {
-    const data = { ..._data, id: rowId.toString(), actions: <ActionList rowId={rowId.toString()} setterFunction={setEditingRow} openEditModal={setEditingModalOpen} /> }
-    setRows([...rows, data])
-    setRowId(rowId + 1)
-    console.log(data)
-  }
+  const products = useStore(useMainStore, state=>state.products);
+  const addProduct = useMainStore(state=>state.addProduct);
+  const hasHydrated = useStore(useMainStore, state => state._hasHydrated);
+  const deleteRecord = useMainStore(state=>state.deleteProduct)
+
+  if(!hasHydrated || typeof products == "undefined"){
+    return <>Loading...</>
+  }else{
     return (
       <Grid>
         <Column className="inventory__banner" lg={16} md={8} sm={4}>
@@ -203,9 +207,13 @@ export default function Inventory() {
           </ClickableTile>
         </Column>
         <Column className="inventory__table" lg={16} md={8} sm={4}>
-          <InventoryTable headers={headers} rows={rows} button={
-            <Button renderIcon={Add} iconDescription="Add product" onClick={() => setModalOpen(true)} className="page__cta">Add product</Button>
-          } />
+          <CustomTable
+            headers={headers}
+            rows={products}
+            openEditModal={setEditingModalOpen}
+            setEditingRow={setEditingRow}
+            actions={false}
+          />
           <Pagination
             totalItems={rows.length}
             pageSize={currentPageSize}
@@ -219,20 +227,16 @@ export default function Inventory() {
             }}
           />
         </Column>
-        <Modal
-          open={modalOpen}
-          onRequestClose={() => setModalOpen(false)}
-          onRequestSubmit={() => {
-            handleSubmit(onSubmit)()
-            return setModalOpen(false)
-          }}
-          onSecondarySubmit={() => setModalOpen(false)}
-          modalHeading="Add a product"
-          modalLabel="Inventory"
-          primaryButtonText="Add product"
-          secondaryButtonText="Cancel"
-        >
-          <Form onSubmit={handleSubmit(onSubmit)}>
+        <CommonModal
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          label="Inventory control"
+          headingText="product"
+          // storeUpdater={(data) => (setRows([...rows, data]))}
+          storeUpdater={data=>addProduct(data)}
+          setEditingRow={setEditingRow}
+          openEditModal={setEditingModalOpen}
+        >{register =>
             <Grid className="inventory__modal__grid">
               <Column lg={16} md={8} sm={4} className="inventory__modal__column">
                 <TextInput labelText="Product name" placeholder="e.g. Fanta Cocktail..." id="text-1" {...register("product")} />
@@ -281,20 +285,23 @@ export default function Inventory() {
               <Column lg={16} md={8} sm={4} className="inventory__modal__column">
                 <TextArea placeholder="Write a description here..." labelText="Product description" id="textarea-1" rows={4} {...register("description")} />
               </Column>
-            </Grid>
-          </Form>
-        </Modal>
-        <EditProductModal
+            </Grid>}
+        </CommonModal>
+        {/* <EditProductModal
           row={rows.find((row) => row.id === editingRow)}
           dataSetter={(data) => setRows([...rows, data])}
           openEdit={editingModalOpen}
           setOpenEdit={setEditingModalOpen}
-        />
+          setEditingRow={setEditingRow}
+        /> */}
       </Grid>
-    )
+    )}
 }
 
-const ActionList = ({ rowId, setterFunction, openEditModal }: { rowId: string, setterFunction: Dispatch<any>, openEditModal: Dispatch<any> }) => {
+const ActionList = ({ rowId, setterFunction, openEditModal }: { rowId: string, setterFunction: Dispatch<any>, openEditModal: Dispatch<any>}) => {
+
+  const deleteRecord = useMainStore(state => state.deleteProduct )
+
   return (
     <div style={{ display: "flex" }}>
       <Button kind="ghost" onClick={() => {
@@ -302,7 +309,9 @@ const ActionList = ({ rowId, setterFunction, openEditModal }: { rowId: string, s
         openEditModal(true)
       }}>
         Edit</Button>
-      <Button kind="danger--ghost">Delete</Button>
+      <Button kind="danger--ghost" onClick={()=> deleteRecord(rowId)}>Delete</Button>
     </div>
   )
 }
+
+export { ActionList }

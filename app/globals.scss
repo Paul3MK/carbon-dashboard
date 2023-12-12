@@ -1,10 +1,12 @@
 @use '@carbon/react/scss/themes';
 @use '@carbon/react/scss/theme' with (
-  $theme: themes.$g100
+  $theme: themes.$g10
 );
 @use "@carbon/react";
 @use '@carbon/react/scss/breakpoint' as *;
 @use '@carbon/react/scss/colors';
+@use "@carbon/react/scss/spacing" as *;
+@use "@carbon/react/scss/type" as *;
 
 @use '@/components/DashboardHeader/dashboard-header';
 
@@ -12,17 +14,20 @@
 @use '@/app/inventory/inventory';
 @use '@/app/requests/requests';
 @use "@/app/reports/reports";
+@use "@/app/transactions/transactions";
+@use "@/app/setup/setup";
+@use "@/components/Auth/login";
 
 
 // @tailwind base;
 // @tailwind components;
 // @tailwind utilities;
 
+body{
+  background-color: colors.$gray-10;
+}
 
 @media (min-width: 42rem){
-  body{
-    background-color: colors.$gray-100;
-  }
   
   .cds--grid--no-gutter{
     padding-left: 1rem;
@@ -34,3 +39,19 @@
   }
 }
 
+
+.page__banner{
+  padding-top: $spacing-07;
+  padding-bottom: $spacing-06;
+}
+
+.page__heading{
+  @include type-style("productive-heading-05")
+}
+
+.modal__column{
+  padding-top: $spacing-05;
+  padding-bottom: $spacing-05;
+  margin-left: 0;
+  margin-right: 0;
+}

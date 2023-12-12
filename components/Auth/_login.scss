@@ -1,0 +1,43 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/colors';
+
+.login__wrapper{
+    margin: auto;
+    width: 32rem;
+    padding: $spacing-05;
+    background-color: colors.$gray-20;
+}
+
+.login__button{
+    width: 50%;   
+}
+
+.login__button--wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login__heading{
+    @include type-style("productive-heading-05")
+}
+
+.login__heading--wrapper{
+    padding-bottom: $spacing-07;
+}
+
+.login__buttons{
+    padding-top: $spacing-07;
+}
+
+.login__field{
+    padding: $spacing-03 0;
+}
+
+.login__page{
+    height: 93vh;
+    display: flex;
+    align-items: center;
+}

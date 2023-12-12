@@ -29,7 +29,7 @@ const ProductForScrapOptions = {
     title: "Product scrap proportions",
     resizable: true,
     height: "300px",
-    theme: "g100"
+    theme: "g10"
 }
 
 const CategoryForScrapData = [
@@ -55,7 +55,7 @@ const CategoryForScrapOptions = {
     title: "Category scrap proportions",
     resizable: true,
     height: "300px",
-    theme: "g100"
+    theme: "g10"
 }
 
 const LineChartData = [
@@ -376,7 +376,7 @@ const LineChartOptions = {
             correspondingDatasets: ["Daily sales"]
         }
     },
-    theme: "g100",
+    theme: "g10",
     resizable: true,
     height: "300px"
 }

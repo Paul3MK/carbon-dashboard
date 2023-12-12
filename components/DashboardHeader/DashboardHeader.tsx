@@ -58,29 +58,27 @@ export default function DashboardHeader() {
                   <HeaderMenuItem>Requests</HeaderMenuItem>
                 </Link>
               </HeaderSideNavItems>
-              <SideNavMenu renderIcon={UserAccess} title="Users">
-                <SideNavMenuItem href="/">
-                  User management
-                </SideNavMenuItem>
-                <SideNavMenuItem href="/">
-                  User link 2
-                </SideNavMenuItem>
-              </SideNavMenu>
+              <SideNavLink href="/users/management" renderIcon={UserAccess}>
+                Users
+              </SideNavLink>
               <SideNavMenu renderIcon={BottlesContainer} title="Inventory">
                 <SideNavMenuItem href="/inventory">
+                  Home
+                </SideNavMenuItem>
+                <SideNavMenuItem href="/inventory/control">
                   Inventory control
                 </SideNavMenuItem>
-                <SideNavMenuItem href="/inventory">
+                <SideNavMenuItem href="/inventory/management">
                   Inventory management
                 </SideNavMenuItem>
               </SideNavMenu>
               <SideNavLink renderIcon={Report} href="/reports">
                 Reports
               </SideNavLink>
-              <SideNavLink renderIcon={List} href="/">
+              <SideNavLink renderIcon={List} href="/transactions">
                 Transactions
               </SideNavLink>
-              <SideNavLink renderIcon={BuildTool} href="/">
+              <SideNavLink renderIcon={BuildTool} href="/setup">
                 Setup
               </SideNavLink>
             </SideNavItems>

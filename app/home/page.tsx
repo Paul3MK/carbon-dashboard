@@ -38,7 +38,7 @@ export default function LandingPage() {
       }
     },
     height: "400px",
-    theme: "g100"
+    theme: "g10"
   });
 
   const [lineChartData, setLineChartData] = useState<any>([
@@ -89,7 +89,7 @@ export default function LandingPage() {
     },
     curve: "curveMonotoneX",
     height: "400px",
-    theme: "g100"
+    theme: "g10"
   })
 
   const [gaugeChartData, setGaugeChartData] = useState<any>([
@@ -112,7 +112,7 @@ export default function LandingPage() {
       type: "semi",
       status: "success"
     },
-    theme: "g100"
+    theme: "g10"
   })
 
   const [meterChartData, setMeterChartData] = useState<any>([
@@ -149,7 +149,7 @@ export default function LandingPage() {
         option: 1
       }
     },
-    theme: "g100"
+    theme: "g10"
   })
 
   return (
@@ -160,9 +160,9 @@ export default function LandingPage() {
       <Column lg={16} md={8} sm={4} className="landing-page__summaries">
         <Grid>
           <SummaryCard label="Distributors" content="32" caption="in total" />
-          <SummaryCard clickable href="/inventory" label="Products out of stock" content="4" caption="as of 20.11.23" />
+          <SummaryCard clickable href="/inventory/control/product" label="Products out of stock" content="4" caption="as of 20.11.23" />
           <SummaryCard label="Distribution orders" content="8" caption="in the last 24h" />
-          <SummaryCard clickable href="/requests" label="Transfer requests" content="2" caption="pending" />
+          <SummaryCard clickable href="/inventory/management" label="Transfer requests" content="2" caption="pending" />
         </Grid>
       </Column>
       <Column lg={16} md={8} sm={4} className="landing-page__charts-r1">
