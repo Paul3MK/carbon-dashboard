@@ -85,7 +85,7 @@ const useMainStore = create<MainState>()(persist(
 const useAuthStore = create<AuthState>()(persist(
     (set, get) => ({
         loggedIn: false,
-        loggedOut: false,
+        loggedOut: true,
         username: "",
         login: (user) => set((state) => ({
             loggedIn: true,
