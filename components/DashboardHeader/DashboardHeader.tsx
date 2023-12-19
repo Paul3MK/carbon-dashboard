@@ -62,7 +62,7 @@ export default function DashboardHeader() {
                 <SideNavMenuItem href="/users/management">
                   User management
                 </SideNavMenuItem>
-                <SideNavMenuItem href="#">
+                <SideNavMenuItem href="/users/add">
                   Add user
                 </SideNavMenuItem>
                 <SideNavMenuItem href="#">

@@ -39,4 +39,13 @@ declare namespace Inputs {
     username: string,
     password: string
   }
+
+  interface Users {
+    id?: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    phoneNumber: string,
+    role: string = "admin" | "support" | "salesperson" // is this the equivalent of an ENUM?
+  }
 }
