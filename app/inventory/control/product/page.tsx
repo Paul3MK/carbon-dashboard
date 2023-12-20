@@ -5,7 +5,7 @@ import { Add, ArrowRight, ArrowUpRight, Edit } from "@carbon/react/icons";
 import { useForm, SubmitHandler } from "react-hook-form";
 import CustomTable from "@/components/CustomTable/CustomTable";
 import { ActionList } from "../../page";
-import EditProductModal from "@/components/Modals/EditProductModal";
+import EditModal from "@/components/Modals/EditProductModal";
 import CommonModal from "@/components/Modals/CommonModal";
 import { useMainStore } from "@/state/mainStore";
 import useStore from "@/state/useStore";
@@ -151,7 +151,7 @@ export default function CreateProduct() {
           </Column>
         </Grid>}
       </CommonModal>
-      <EditProductModal
+      <EditModal
         row={rows.find((row) => row.id === editingRow)}
         dataSetter={(data) => {
           const editedRows = [...rows]
@@ -215,7 +215,7 @@ export default function CreateProduct() {
               <TextArea placeholder="Write a description here..." labelText="Product description" id="textarea-1" rows={4} {...register("description")} />
             </Column>
           </Grid>}
-      </EditProductModal>
+      </EditModal>
     </Grid>
   )}
 }

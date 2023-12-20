@@ -9,7 +9,7 @@ import { LineChart } from "@carbon/charts-react";
 import '@carbon/charts-react/styles.css'
 
 import CustomTable from "@/components/CustomTable/CustomTable";
-import EditProductModal from "@/components/Modals/EditProductModal";
+import EditModal from "@/components/Modals/EditProductModal";
 import { useMainStore } from "@/state/mainStore";
 import useStore from "@/state/useStore";
 import CommonModal from "@/components/Modals/CommonModal";

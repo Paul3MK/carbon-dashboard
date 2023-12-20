@@ -5,7 +5,7 @@ import { Add, ArrowRight, ArrowUpRight, Edit } from "@carbon/react/icons";
 import { useForm, SubmitHandler } from "react-hook-form";
 import CustomTable from "@/components/CustomTable/CustomTable";
 import { ActionList } from "../../page";
-import EditProductModal from "@/components/Modals/EditProductModal";
+import EditModal from "@/components/Modals/EditProductModal";
 import CommonModal from "@/components/Modals/CommonModal";
 import { Inputs } from "@/common";
 
@@ -79,7 +79,7 @@ export default function SubcategoryControl() {
           </Column>
         </Grid>}
       </CommonModal>
-      <EditProductModal
+      <EditModal
         row={rows.find((row) => row.id === editingRow)}
         dataSetter={(data: Inputs.Subcategories) => {
           const editedRows = [...rows]
@@ -99,7 +99,7 @@ export default function SubcategoryControl() {
               row?.subcategory} />
           </Column>
         </Grid>}
-      </EditProductModal>
+      </EditModal>
     </Grid>
   )
 }

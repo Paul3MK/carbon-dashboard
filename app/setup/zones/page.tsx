@@ -1,7 +1,7 @@
 "use client"
 
 import React, { SetStateAction, useState } from "react";
-import EditProductModal from "@/components/Modals/EditProductModal";
+import EditModal from "@/components/Modals/EditProductModal";
 import CustomTable from "@/components/CustomTable/CustomTable";
 import {
     Grid,
@@ -103,7 +103,7 @@ export default function Zones() {
                         </Column>
                     </Grid>}
             </CommonModal>
-            <EditProductModal
+            <EditModal
                 row={rows.find((_row: Inputs.Zones) => _row.id === editingRow)}
                 dataSetter={(data)=>rowDataEdit(data, rows, setRows)}
                 label="Zones"
@@ -113,7 +113,7 @@ export default function Zones() {
                 setEditingRow={setEditingRow}
             >
                 {(row, register) => <Grid></Grid>}
-            </EditProductModal>
+            </EditModal>
         </Grid>
     )
 }
