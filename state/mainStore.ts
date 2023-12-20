@@ -1,14 +1,18 @@
 import { Inputs } from "@/common";
+import { Input } from "postcss";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 interface MainState {
     products: Inputs.Products[],
     categories: Inputs.Categories[],
+    users: Inputs.Users[],
     addCategory: (newCategory: Inputs.Categories) => void,
     addProduct: (newProduct: Inputs.Products) => void,
     editProduct: (editedProduct: Inputs.Products) => void,
     deleteProduct: (id: string) => void,
+    addUser: (newUser: Inputs.Users) => void,
+    editUser: (editedUser: Inputs.Users) => void,
     _hasHydrated: boolean,
     setHasHydrated: (arg: any) => void
 }
@@ -49,6 +53,18 @@ const useMainStore = create<MainState>()(persist(
                 dateCreated: new Date("11 November 2023")
             }
         ],
+        users: [
+            {
+                id: "832j01ik",
+                firstName: "Adam",
+                lastName: "Boateng",
+                email: "adam.boat@gmail.com",
+                phoneNumber: "0509912121",
+                role: "Salesperson",
+                dateCreated: new Date(Date.now()).toDateString(),
+                status: "Deactivated"
+            }
+        ],
         addProduct: (newProduct) => set((state) => {
             if(newProduct){
                 return {products: get().products.concat(newProduct)}        
@@ -74,11 +90,24 @@ const useMainStore = create<MainState>()(persist(
             }else{
                 return { categories: get().categories}
             }
+        }),
+        addUser: (newUser) => set((state) => {
+            if(newUser){
+                return { users: get().users.concat(newUser)}
+            }else{
+                return { users: get().users}
+            }
+        }),
+        editUser: (editedUser: Inputs.Users) => set((state)=> {
+            let _users = get().users
+            let index: number = get().users.findIndex((user) => user.id == editedUser.id)
+            _users[index] = editedUser
+            return { users: _users}
         })
     }), {
     name: "manufacturers-storage",
     onRehydrateStorage: () => (state) => {
-        state.setHasHydrated(true)
+        state?.setHasHydrated(true)
     }
 }))
 

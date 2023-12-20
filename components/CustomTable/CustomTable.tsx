@@ -18,7 +18,7 @@ import {
 } from '@carbon/react';
 import { ActionList } from '@/app/inventory/page';
 
-export default function CustomTable({ rows, headers, button, search, actions=true, overflowContent, openEditModal, setEditingRow }: { rows: any[], headers: any[], button?: ReactNode, search?: boolean, overflowContent?: ReactNode, actions?: boolean, openEditModal: Dispatch<any>, setEditingRow: Dispatch<any> }) {
+export default function CustomTable({ rows, headers, button, search, actions=true, openEditModal, setEditingRow }: { rows: any[], headers: any[], button?: ReactNode, search?: boolean, actions?: boolean, openEditModal?: Dispatch<any>, setEditingRow?: Dispatch<any> }) {
 
   const getRowDescription = (rowid: string) => {
     const row = rows.find(({ id }) => id === rowid)
@@ -64,7 +64,7 @@ export default function CustomTable({ rows, headers, button, search, actions=tru
                 <React.Fragment key={row.id}>
                   <TableExpandRow {...getRowProps({ row })}>
                     {row.cells.map((cell) => (
-                      <TableCell key={cell.id}>{cell.info.header == "actions" && actions ? <ActionList rowId={row.id} openEditModal={openEditModal} setterFunction={setEditingRow}/> : cell.value}</TableCell>
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
                     ))}
                   </TableExpandRow>
                   <TableExpandedRow colSpan={headers.length + 1}>

@@ -46,6 +46,8 @@ declare namespace Inputs {
     lastName: string,
     email: string,
     phoneNumber: string,
+    status: ReactNode | string,
+    actions?: ReactNode,
     role: string = "admin" | "support" | "salesperson" // is this the equivalent of an ENUM?
   }
 }

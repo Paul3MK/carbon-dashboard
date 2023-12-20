@@ -6,7 +6,7 @@ import { Modal, Form, TextInput, NumberInput, TextArea, Grid, Column, Select, Se
 import { ActionList } from "@/app/inventory/page";
 import { Inputs } from "@/common";
 
-export default function CommonModal({ modalOpen, setModalOpen, label, headingText, storeUpdater, openEditModal, setEditingRow, children }: { storeUpdater: (arg: any) => void, modalOpen: boolean, setModalOpen: Dispatch<any>, label: string, headingText: string, openEditModal: Dispatch<any>, setEditingRow: Dispatch<any>, children: any }) {
+export default function CommonModal({ modalOpen, setModalOpen, label, headingText, storeUpdater, children }: { storeUpdater: (arg: any) => void, modalOpen: boolean, setModalOpen: Dispatch<any>, label: string, headingText: string, children: any }) {
 
     const [rowId, setRowId] = useState<number>(0)
 
