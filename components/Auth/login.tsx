@@ -5,18 +5,22 @@ import { Grid, Column, Form, TextInput, NumberInput, Checkbox, ButtonSet, Button
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAuthStore } from "@/state/mainStore"
 import { Inputs } from "@/common"
-import { redirect } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
+
 
 export default function Login() {
-
+    
     const loggedIn = useAuthStore(state => state.loggedIn)
     const login = useAuthStore(state => state.login)
+    const username = useAuthStore(state => state.username)
+    const password = useAuthStore(state => state.password)
+    const router = useRouter()
 
     const { register, handleSubmit, formState: {errors}} = useForm<Inputs.Login>()
     const onSubmit: SubmitHandler<Inputs.Login> = (data) => {
-        if(data.password == "testing"){
+        if(data.password == password && data.username == username){
             login(data)
-            redirect("/")
+            router.replace("/home")
         }
     }
 

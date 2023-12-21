@@ -21,8 +21,11 @@ interface AuthState{
     loggedIn: boolean,
     loggedOut: boolean,
     username: string,
+    password: string,
     login: (user: Inputs.Login) => void,
-    logout: (user: Inputs.Login) => void
+    logout: (user: Inputs.Login) => void,
+    setPassword: (password: string) => void
+    setUsername: (username: string) => void
 }
 
 const useMainStore = create<MainState>()(persist(
@@ -115,17 +118,22 @@ const useAuthStore = create<AuthState>()(persist(
     (set, get) => ({
         loggedIn: false,
         loggedOut: true,
-        username: "",
+        username: "paulmkouadio@gmail.com",
+        password: "testing",
         login: (user) => set((state) => ({
             loggedIn: true,
             loggedOut: false,
-            username: user.username
         })),
         logout: (user) => set((state) => ({
             loggedIn: false,
-            loggedOut: true,
-            username: user.username
-        }))
+            loggedOut: true
+        })),
+        setPassword: (newPassword) => set((state) => ((
+            {password: newPassword}
+        ))),
+        setUsername: (newUsername) => set((state) => ((
+            {username: newUsername}
+        ))),
     }),
     {
         name: "auth-storage",

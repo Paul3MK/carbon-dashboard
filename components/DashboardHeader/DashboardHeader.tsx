@@ -16,9 +16,12 @@ import {
   SideNavLink,
   SideNavMenu,
   SideNavMenuItem,
+  OverflowMenuItem,
+  OverflowMenu
 } from '@carbon/react';
 import { Switcher, Notification, UserAvatar, BottlesContainer, List, Report, BuildTool, UserServiceDesk, UserAdmin, UserFavorite, Email } from "@carbon/icons-react"
 import Link from 'next/link';
+import UserOverflow from './UserOverflow';
 
 export default function DashboardHeader() {
   return (
@@ -65,7 +68,7 @@ export default function DashboardHeader() {
                 <SideNavMenuItem href="/users/add">
                   Add user
                 </SideNavMenuItem>
-                <SideNavMenuItem href="#">
+                <SideNavMenuItem href="/profile">
                   My profile
                 </SideNavMenuItem>
               </SideNavMenu>
@@ -145,8 +148,8 @@ export default function DashboardHeader() {
             <HeaderGlobalAction
               aria-label="User Avatar"
               tooltipAlignment="center"
-            >
-              <UserAvatar size={20} />
+              >
+              <UserOverflow renderIcon={UserAvatar}/>
             </HeaderGlobalAction>
             <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">
               <Switcher size={20} />
