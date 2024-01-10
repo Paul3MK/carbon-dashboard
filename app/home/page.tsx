@@ -1,10 +1,10 @@
 "use client"
 
-import { Grid, Column, Tile, ClickableTile, Link, AspectRatio } from "@carbon/react"
+import { Grid, Column, Tile, ClickableTile, Link, AspectRatio, Theme } from "@carbon/react"
 import { SimpleBarChart, LineChart, GaugeChart, MeterChart } from "@carbon/charts-react"
 import { ReactNode, useEffect, useState } from "react"
 import '@carbon/charts-react/styles.css'
-import { ArrowRight, ArrowUpRight } from "@carbon/react/icons"
+import { ArrowRight, ArrowUpRight, Warning, ShoppingCart, CostTotal, Money, InventoryManagement, UserFavorite, ArrowDown, ArrowUp } from "@carbon/react/icons"
 
 export default function LandingPage() {
 
@@ -158,15 +158,21 @@ export default function LandingPage() {
         <h1 className="landing-page__heading">Overview</h1>
       </Column>
       <Column lg={16} md={8} sm={4} className="landing-page__summaries">
-        <Grid>
-          <SummaryCard label="Distributors" content="32" caption="in total" />
-          <SummaryCard clickable href="/inventory/control/product" label="Products out of stock" content="4" caption="as of 20.11.23" />
-          <SummaryCard label="Distribution orders" content="8" caption="in the last 24h" />
-          <SummaryCard clickable href="/inventory/management" label="Transfer requests" content="2" caption="pending" />
+        <Grid className="landing-page__summaries__subgrid" condensed>
+          <SummaryCard clickable label="Reorder limit" content="200" caption="in total" renderIcon={Warning} />
+          <SummaryCard clickable href="/inventory/control/product" label="Total orders from VSPs" content="487" caption="as of 20.11.23" renderIcon={ShoppingCart}/>
+          <SummaryCard clickable href="/transactions" label="Transaction value" content="GHS 41,291,291" caption="in total" renderIcon={CostTotal}/>
+          <SummaryCard clickable href="/inventory/management" label="Total inventory value" content="GHS 312,301,121" caption="pending" renderIcon={Money}/>
+        </Grid>
+        <Grid className="landing-page__summaries__subgrid" condensed>
+          <SummaryCard clickable href="/inventory/management" label="Expiring inventory" content="32" caption="in total" renderIcon={InventoryManagement}/>
+          <SummaryCard clickable href="#" label="Total VSPs" content="192" caption="as of 20.11.23" renderIcon={UserFavorite}/>
+          <SummaryCard clickable href="#" label="Value of lost leads" content="GHS 21,299,192" caption="in total" renderIcon={ArrowDown} />
+          <SummaryCard clickable href="#" label="Value of won leads" content="GHS 67,922,291" caption="in total" renderIcon={ArrowUp} />
         </Grid>
       </Column>
       <Column lg={16} md={8} sm={4} className="landing-page__charts-r1">
-        <Grid>
+        <Grid narrow>
           <Column lg={8} md={4} sm={4}>
             <Tile>
               <SimpleBarChart options={barChartOptions} data={barChartData} />
@@ -189,11 +195,11 @@ export default function LandingPage() {
 }
 
 
-const SummaryCard = ({ label, content, caption, clickable, href, ratio="2x1" }: { label: string, content: string, caption?: string, clickable?: boolean, href?: string, ratio?: any }) => {
+const SummaryCard = ({ label, content, caption, clickable, href, ratio="2x1", ...props }: { label: string, content: string, caption?: string, clickable?: boolean, href?: string, ratio?: any, renderIcon?:any }) => {
   if (clickable) {
     return (
       <Column lg={4} md={2} sm={4}>
-        <ClickableTile href={href} className="landing-page__card" renderIcon={ArrowRight}>
+        <ClickableTile href={href} className="landing-page__card" renderIcon={props.renderIcon}>
           <AspectRatio ratio={ratio}>
             <h2 className="landing-page__subheading">{label}</h2>
             <div className="card__content">
@@ -207,16 +213,16 @@ const SummaryCard = ({ label, content, caption, clickable, href, ratio="2x1" }: 
   } else {
     return (
       <Column lg={4} md={2} sm={4}>
-        <Tile className="landing-page__card">
-          <AspectRatio ratio={ratio}>
-            <h2 className="landing-page__subheading">{label}</h2>
-            <div className="card__content">
-              <p className="landing-page__display-text">{content}</p>
-              <p className="landing-page__caption">{caption}</p>
-            </div>
-          </AspectRatio>
-        </Tile>
-      </Column>
+          <Tile className="landing-page__card">
+            <AspectRatio ratio={ratio}>
+              <h2 className="landing-page__subheading">{label}</h2>
+              <div className="card__content">
+                <p className="landing-page__display-text">{content}</p>
+                <p className="landing-page__caption">{caption}</p>
+              </div>
+            </AspectRatio>
+          </Tile>
+        </Column>
     )
   }
 }

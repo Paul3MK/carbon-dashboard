@@ -16,7 +16,7 @@
 }
 
 .landing-page__display-text{
-  @include type-style("productive-heading-07")
+  @include type-style("productive-heading-06")
 }
 
 .landing-page__banner{
@@ -40,8 +40,13 @@
   padding-bottom: $spacing-05;
 }
 
+
 .card__content{
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.landing-page__summaries__subgrid:first-child{
+  margin-bottom: $spacing-01;
 }
