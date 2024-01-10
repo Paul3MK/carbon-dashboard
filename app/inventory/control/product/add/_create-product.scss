@@ -1,0 +1,11 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+
+.notification__area{
+    position: absolute;
+    right: $spacing-06;
+    width: 20rem;
+    padding-top: $spacing-07;
+}
