@@ -9,10 +9,10 @@ import { LineChart } from "@carbon/charts-react";
 import '@carbon/charts-react/styles.css'
 
 import CustomTable from "@/components/CustomTable/CustomTable";
-import EditModal from "@/components/Modals/EditProductModal";
+import EditModal from "@/components/Modals/EditModal";
 import { useMainStore } from "@/state/mainStore";
 import useStore from "@/state/useStore";
-import CommonModal from "@/components/Modals/CommonModal";
+import AddModal from "@/components/Modals/AddModal";
 
 export default function Inventory() {
 
@@ -227,7 +227,7 @@ export default function Inventory() {
             }}
           />
         </Column>
-        <CommonModal
+        <AddModal
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           label="Inventory control"
@@ -286,12 +286,12 @@ export default function Inventory() {
                 <TextArea placeholder="Write a description here..." labelText="Product description" id="textarea-1" rows={4} {...register("description")} />
               </Column>
             </Grid>}
-        </CommonModal>
-        {/* <EditProductModal
+        </AddModal>
+        {/* <EditModal
           row={rows.find((row) => row.id === editingRow)}
           dataSetter={(data) => setRows([...rows, data])}
           openEdit={editingModalOpen}
-          setOpenEdit={setEditingModalOpen}
+          setOpen={setEditingModalOpen}
           setEditingRow={setEditingRow}
         /> */}
       </Grid>

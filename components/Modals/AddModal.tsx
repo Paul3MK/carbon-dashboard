@@ -6,16 +6,27 @@ import { Modal, Form, TextInput, NumberInput, TextArea, Grid, Column, Select, Se
 import { ActionList } from "@/app/inventory/page";
 import { Inputs } from "@/common";
 
-export default function CommonModal({ modalOpen, setModalOpen, label, headingText, storeUpdater, children }: { storeUpdater: (arg: any) => void, modalOpen: boolean, setModalOpen: Dispatch<any>, label: string, headingText: string, children: any }) {
+export default function AddModal({ 
+    isOpen,
+    label,
+    headingText,
+    children,
+    setOpen,
+    storeUpdater,
+}: {
+    isOpen: boolean,
+    label: string,
+    headingText: string,
+    children: any,
+    storeUpdater?: (arg: any) => void,
+    setOpen: Dispatch<any>,
+}){
 
     const [rowId, setRowId] = useState<number>(0)
 
-
     const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm<Inputs.Products & Inputs.Categories>()
     const onSubmit: SubmitHandler<Inputs.Products & Inputs.Categories> = data => {
-        data.dateCreated = new Date(Date.now()).toDateString()
-        storeUpdater({ ...data, id: rowId, actions: "" })
-        return setRowId(rowId + 1)
+        console.log(data)
     }
 
     useEffect(() => {
@@ -24,13 +35,13 @@ export default function CommonModal({ modalOpen, setModalOpen, label, headingTex
 
     return (
         <Modal
-            open={modalOpen}
-            onRequestClose={() => setModalOpen(false)}
+            open={isOpen}
+            onRequestClose={() => setOpen(false)}
             onRequestSubmit={() => {
                 handleSubmit(onSubmit)()
-                return setModalOpen(false)
+                return setOpen(false)
             }}
-            onSecondarySubmit={() => setModalOpen(false)}
+            onSecondarySubmit={() => setOpen(false)}
             modalHeading={`Add a ${headingText}`}
             modalLabel={label}
             primaryButtonText={`Add ${headingText}`}
