@@ -41,3 +41,8 @@
     display: flex;
     align-items: center;
 }
+
+.login__failure{
+    color: colors.$red-60;
+    @include type-style("caption-02")
+}

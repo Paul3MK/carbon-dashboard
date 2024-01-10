@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { Grid, Column, Form, TextInput, NumberInput, Checkbox, ButtonSet, Button } from "@carbon/react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAuthStore } from "@/state/mainStore"
@@ -16,11 +16,16 @@ export default function Login() {
     const password = useAuthStore(state => state.password)
     const router = useRouter()
 
+    const [ loginState, setLoginState ] = useState<string>("")
+
     const { register, handleSubmit, formState: {errors}} = useForm<Inputs.Login>()
     const onSubmit: SubmitHandler<Inputs.Login> = (data) => {
         if(data.password == password && data.username == username){
             login(data)
             router.replace("/home")
+        }
+        else{
+            setLoginState("Login failed.")
         }
     }
 
@@ -42,6 +47,9 @@ export default function Login() {
                             <Column lg={16} className="login__field"    >
                                 <Checkbox id="remember" labelText="Remember me" />
                             </Column>
+                            {loginState == "Login failed." && <Column lg={16} md={8} sm={4}>
+                                <p className="login__failure">Login failed. Check your email or password.</p>
+                            </Column>}
                             <Column lg={16} className="login__buttons">
                                 <div className="login__button--wrapper">
                                 <Button kind="primary" className="login__button" type="submit">Login</Button>
