@@ -18,15 +18,14 @@ export default function AddUser(){
         firstName: yup.string().min(2, "Must be longer than two characters").required(),
         lastName: yup.string().min(2, "Must be longer than two characters").required(),
         email: yup.string().email("Check this email is valid").required(),
-        phoneNumber: yup.string().length(10, "Check the number length").matches(/0(5|2)[0-9][0-9]{7}/gm).required(),
+        phoneNumber: yup.string().length(10, "Check the number length").matches(/0(5|2)[0-9][0-9]{7}/gm, "Ensure this number is valid").required(),
         password: yup.string().min(8, "Password should be at least 8 chars long").required(),
-        confirmPassword: yup.string().min(8, "Password should be at least 8 chars long").required(),
+        confirmPassword: yup.string().oneOf([yup.ref("password")], "Passwords should match").required(),
         role: yup.string().notOneOf([""], "Assign a user role").required()        
     })
 
-    const { register, handleSubmit, formState: {errors} } = useForm({resolver: yupResolver(schema)})
-    const onSubmit: SubmitHandler = (data) => console.log(data)
-
+    const { register, handleSubmit, formState: {errors}, setValue } = useForm({resolver: yupResolver(schema)})
+    const onSubmit = (data) => console.log(data)
     const userRoles = [
         // {
         //     id: "",
@@ -59,29 +58,32 @@ export default function AddUser(){
             <Column lg={16} md={8} sm={4}>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Grid>
-                        <Column lg={8}>
+                        <Column lg={8} className="grid__column">
                             <TextInput id="firstName" labelText="First name" {...register("firstName")}/>
                             <p className="text--error">{errors?.firstName?.message}</p>
                         </Column>
-                        <Column lg={8}>
+                        <Column lg={8} className="grid__column">
                             <TextInput id="lastName" labelText="Last name" {...register("lastName")}/>
                         </Column>
-                        <Column lg={8}>
+                        <Column lg={8} className="grid__column">
                             <TextInput id="email" labelText="Email" {...register("email")}/>
                         </Column>
-                        <Column lg={8}>
-                            <TextInput maxCount={10} enableCounter type='number' id="phoneNumber" labelText="Phone number" {...register("phoneNumber")}/>
+                        <Column lg={8} className="grid__column">
+                            <TextInput maxCount={10} enableCounter type='phone' id="phoneNumber" labelText="Phone number" {...register("phoneNumber")}/>
+                            <p className="text--error">{errors.phoneNumber?.message}</p>
                         </Column>
-                        <Column lg={8}>
+                        <Column lg={8} className="grid__column">
                             <TextInput.PasswordInput id="password" labelText="Password" {...register("password")}/>
+                            <p className="text--error">{errors.password?.message}</p>
                         </Column>
-                        <Column lg={8}>
+                        <Column lg={8} className="grid__column">
                             <TextInput.PasswordInput id="confirmPassword" labelText="Confirm password" {...register("confirmPassword")}/>
+                            <p className="text--error">{errors.confirmPassword?.message}</p>
                         </Column>
-                        <Column lg={8}>
-                            <Dropdown id="userRoles" titleText="Assign a role" label="Choose a user role" items={userRoles} itemToString={item => item ? item.text : ""}/>
+                        <Column lg={8} className="grid__column">
+                            <Dropdown id="userRoles" titleText="Assign a role" defaultValue="" label="Choose a user role" items={userRoles} itemToString={item => item ? item.text : ""} onChange={(e)=>setValue("role", e?.selectedItem?.text)}/>
                         </Column>
-                        <Column lg={16} md={8} sm={4}>
+                        <Column lg={16} md={8} sm={4} className="submit-button__wrapper">
                             <Button kind="primary" type="submit">Submit</Button>
                         </Column>
                     </Grid>
@@ -90,3 +92,8 @@ export default function AddUser(){
         </Grid>
     )
 }
+
+
+//react-hook-form
+//storyblock for React Carbon
+//yup for schema validation

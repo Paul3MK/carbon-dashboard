@@ -7,3 +7,8 @@
     color: red;
     @include type-style("label-02")
 }
+
+.grid__column{
+    margin: $spacing-03;
+    min-height: 84px;
+}
