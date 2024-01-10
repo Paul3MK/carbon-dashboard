@@ -4,9 +4,8 @@ import React, { Dispatch, ReactNode, useState } from "react"
 import { Grid, Column, Tag, Breadcrumb, BreadcrumbItem, OverflowMenu, OverflowMenuItem, Form, TextInput, Dropdown } from "@carbon/react"
 import CustomTable from "@/components/CustomTable/CustomTable"
 import CTA from "@/components/CTA/CTA"
-import CommonModal from "@/components/Modals/CommonModal"
-import { useForm } from "react-hook-form"
-import EditModal from "@/components/Modals/EditProductModal"
+import Overflow from "@/components/OverflowMenus/Overflow"
+import EditModal from "@/components/Modals/EditModal"
 import { useStore } from "zustand"
 import { useMainStore } from "@/state/mainStore"
 
@@ -49,19 +48,6 @@ const headers = [
     }
 ]
 
-const Overflow = ({editAction, rowToEdit, setRowToEdit, rowId}: {editAction: Dispatch<any>, rowToEdit?: ReactNode, setRowToEdit: Dispatch<any>, rowId: string}) => {
-    return (
-        <OverflowMenu>
-            <OverflowMenuItem itemText="Edit user" onClick={() => {
-                editAction(true)
-                setRowToEdit(rowId)
-            }}/>
-            <OverflowMenuItem itemText="Deactivate user" />
-            <OverflowMenuItem hasDivider itemText="Delete user" />
-        </OverflowMenu>
-    )
-}
-
 function getRow(id, rows){
     return rows.filter((row)=> row.id == id)[0]
 }
@@ -102,12 +88,10 @@ export default function UserManagement() {
                 </Column>
                 <EditModal
                     row={getRow(rowToEdit, users)}
-                    setEditingRow={setRowToEdit}
                     label="Users"
                     headingText="User"
-                    openEdit={openModal}
-                    setOpenEdit={setOpenModal}
-                    typeToEdit="users"
+                    setOpen={setOpenModal}
+                    isOpen={openModal}
                 >
                     {(row, register) =>
                         <Grid>
