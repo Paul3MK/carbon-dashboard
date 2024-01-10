@@ -18,6 +18,8 @@
 @use "@/app/setup/setup";
 @use "@/components/Auth/login";
 @use "@/app/users/add/user-add";
+@use "@/app/profile/profile";
+@use "@/app/inventory/control/product/add/create-product";
 
 
 // @tailwind base;
@@ -25,7 +27,7 @@
 // @tailwind utilities;
 
 body{
-  background-color: colors.$gray-10;
+  // background-color: colors.$white;
 }
 
 @media (min-width: 42rem){
@@ -55,4 +57,10 @@ body{
   padding-bottom: $spacing-05;
   margin-left: 0;
   margin-right: 0;
+}
+
+.submit-button__wrapper{
+  display: flex;
+  justify-content: end;
+  margin-top: $spacing-06;
 }

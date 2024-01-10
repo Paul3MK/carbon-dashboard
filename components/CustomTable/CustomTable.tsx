@@ -18,7 +18,7 @@ import {
 } from '@carbon/react';
 import { ActionList } from '@/app/inventory/page';
 
-export default function CustomTable({ rows, headers, button, search, actions=true, openEditModal, setEditingRow }: { rows: any[], headers: any[], button?: ReactNode, search?: boolean, actions?: boolean, openEditModal?: Dispatch<any>, setEditingRow?: Dispatch<any> }) {
+export default function CustomTable({ rows, headers, button, search }: { rows: any[], headers: any[], button?: ReactNode, search?: boolean}) {
 
   const getRowDescription = (rowid: string) => {
     const row = rows.find(({ id }) => id === rowid)

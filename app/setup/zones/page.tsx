@@ -1,7 +1,7 @@
 "use client"
 
 import React, { SetStateAction, useState } from "react";
-import EditModal from "@/components/Modals/EditProductModal";
+import EditModal from "@/components/Modals/EditModal";
 import CustomTable from "@/components/CustomTable/CustomTable";
 import {
     Grid,
@@ -22,7 +22,7 @@ import { ActionList } from "@/app/inventory/page";
 import CTA from "@/components/CTA/CTA";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "@/common";
-import CommonModal from "@/components/Modals/CommonModal";
+import AddModal from "@/components/Modals/AddModal";
 
 
 export default function Zones() {
@@ -78,7 +78,7 @@ export default function Zones() {
             <Column lg={16}>
                 <CustomTable headers={headers} rows={rows} button={<CTA label="Add zone" modalOpener={setModalOpen} />} search={true} />
             </Column>
-            <CommonModal
+            <AddModal
                 modalOpen={modalOpen}
                 setModalOpen={setModalOpen}
                 label="Zones"
@@ -102,14 +102,14 @@ export default function Zones() {
                             </Grid>
                         </Column>
                     </Grid>}
-            </CommonModal>
+            </AddModal>
             <EditModal
                 row={rows.find((_row: Inputs.Zones) => _row.id === editingRow)}
                 dataSetter={(data)=>rowDataEdit(data, rows, setRows)}
                 label="Zones"
                 headingText="zone"
                 openEdit={editModalOpen}
-                setOpenEdit={setEditModalOpen}
+                setOpen={setEditModalOpen}
                 setEditingRow={setEditingRow}
             >
                 {(row, register) => <Grid></Grid>}

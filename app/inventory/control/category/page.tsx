@@ -5,8 +5,8 @@ import { Add, ArrowRight, ArrowUpRight, Edit } from "@carbon/react/icons";
 import { useForm, SubmitHandler } from "react-hook-form";
 import CustomTable from "@/components/CustomTable/CustomTable";
 import { ActionList } from "../../page";
-import EditModal from "@/components/Modals/EditProductModal";
-import CommonModal from "@/components/Modals/CommonModal";
+import EditModal from "@/components/Modals/EditModal";
+import AddModal from "@/components/Modals/AddModal";
 import { Inputs } from "@/common";
 import { useMainStore } from "@/state/mainStore";
 import useStore from "@/state/useStore";
@@ -64,7 +64,7 @@ export default function CategoryControl() {
           </Column>
         </Grid>
       </Column>
-      <CommonModal
+      <AddModal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         label="Inventory control"
@@ -79,7 +79,7 @@ export default function CategoryControl() {
               <TextInput labelText="Category name" placeholder="e.g. Soft drinks" id="text-1" {...register("category")} />
             </Column>
           </Grid>}
-      </CommonModal>
+      </AddModal>
       <EditModal
         row={rows.find((row) => row.id === editingRow)}
         dataSetter={(data: Inputs.Categories) => {
@@ -88,7 +88,7 @@ export default function CategoryControl() {
           return setRows(editedRows)
         }}
         openEdit={editingModalOpen}
-        setOpenEdit={setEditingModalOpen}
+        setOpen={setEditingModalOpen}
         setEditingRow={setEditingRow}
         label="Inventory control"
         headingText="category"

@@ -42,7 +42,7 @@ export default function InventoryControl() {
                     <Column lg={4}>
                         <ClickableTile renderIcon={ArrowRight}>
                             <AspectRatio ratio="1x1">
-                                <h2 className="inventory-control__subheading">Create inventory item(s)</h2>
+                                <h2 className="inventory-control__subheading">Brands</h2>
                             </AspectRatio>
                         </ClickableTile>
                     </Column>

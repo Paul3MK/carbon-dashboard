@@ -118,7 +118,7 @@ const useAuthStore = create<AuthState>()(persist(
     (set, get) => ({
         loggedIn: false,
         loggedOut: true,
-        username: "paulmkouadio@gmail.com",
+        username: "test@test.com",
         password: "testing",
         login: (user) => set((state) => ({
             loggedIn: true,
