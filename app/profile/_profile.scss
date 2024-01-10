@@ -1,0 +1,9 @@
+@use '@carbon/react/scss/spacing' as *;
+@use '@carbon/react/scss/type' as *;
+@use '@carbon/react/scss/breakpoint' as *;
+@use '@carbon/react/scss/theme' as *;
+@use '@carbon/react/scss/colors';
+
+.spacing-block--06{
+    margin-top: $spacing-06;
+}

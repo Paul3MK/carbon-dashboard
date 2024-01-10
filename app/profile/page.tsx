@@ -1,6 +1,6 @@
 "use client"
 
-import { Grid, Column, Breadcrumb, BreadcrumbItem, TextInput, Form, Button } from "@carbon/react";
+import { Grid, Column, Breadcrumb, BreadcrumbItem, TextInput, Form, Button, AspectRatio } from "@carbon/react";
 import React from "react";
 import * as yup from "yup"
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -38,19 +38,21 @@ export default function UserProfile() {
                 <h1 className="page__heading">My profile</h1>
             </Column>
             <Column lg={16} md={8} sm={4}>
-                <Form onSubmit={handleSubmit(onSubmit)}>
-                    <Grid>
-                        <Column lg={8} md={4} sm={4}>
-                            <TextInput id="email" labelText="Email" defaultValue={username} {...register("username")} />
-                        </Column>
-                        <Column lg={8} md={4} sm={4}>
-                            <TextInput.PasswordInput defaultValue={password} labelText="Password" id="password" {...register("password")} />
-                        </Column>
-                        <Column>
-                            <Button kind="primary" type="submit">Submit</Button>
-                        </Column>
-                    </Grid>
-                </Form>
+                <AspectRatio ratio="16x9" className="profile--wrapper">
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <Grid>
+                            <Column lg={8} md={4} sm={4}>
+                                <TextInput id="email" labelText="Email" defaultValue={username} {...register("username")} />
+                            </Column>
+                            <Column lg={8} md={4} sm={4}>
+                                <TextInput.PasswordInput defaultValue={password} labelText="Password" id="password" {...register("password")} />
+                            </Column>
+                            <Column lg={16} md={8} sm={4} className="submit-button__wrapper spacing-block--06">
+                                <Button kind="primary" type="submit">Submit</Button>
+                            </Column>
+                        </Grid>
+                    </Form>
+                </AspectRatio>
             </Column>
         </Grid>
     )
