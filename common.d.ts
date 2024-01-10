@@ -51,3 +51,25 @@ declare namespace Inputs {
     role: string = "admin" | "support" | "salesperson" // is this the equivalent of an ENUM?
   }
 }
+
+
+declare namespace API{
+  interface Products {
+    name: string,
+    weight: {
+      value: number,
+      unit: string
+    },
+    volume: {
+      value: number,
+      unit: string
+    },
+    description: string,
+    sku: string,
+    brand: string,
+    categories: [string],
+    retail_price: string,
+    store_price: string,
+    quantity: string
+  }
+}
