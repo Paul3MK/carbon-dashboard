@@ -58,10 +58,13 @@ export default function DashboardSidebar() {
                 </SideNavMenuItem>
               </SideNavMenu>
               <SideNavMenu renderIcon={UserFavorite} title="CRM">
+                <SideNavMenuItem href="/CRM/add-customer">
+                  Add customers
+                </SideNavMenuItem>
                 <SideNavMenuItem href="#">
                   Setup customers
                 </SideNavMenuItem>
-                <SideNavMenuItem href="#">
+                <SideNavMenuItem href="/CRM/manage-customers">
                   Manage customers
                 </SideNavMenuItem>
                 <SideNavMenuItem href="#">
